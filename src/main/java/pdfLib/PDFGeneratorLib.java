@@ -11,13 +11,13 @@ import static libService.LibService.*;
 public class PDFGeneratorLib {
     public static void main(String[] args) {
         Row row1 = addCol(
-                col(6, 12, "Hello","Hola","haha","Hello"),
+                col(6, 12, "Hello","Hola","haha","Hello","Mg Mg","Mg Mg"),
                 col(6, 12, "Hello","Hola","haha","Hello")
 
                );
         Row row2 = addCol(
                 col(6, 14, "Aung Aung"),
-                col(6, 14, "aa"));
+                col(6, 15, "aa"));
         Row row3 = addCol(
                 col(2, 12, "Hla Hla"),
                 col(5, 16, "bb"));

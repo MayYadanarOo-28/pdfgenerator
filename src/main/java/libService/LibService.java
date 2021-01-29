@@ -68,24 +68,30 @@ public class LibService {
                 // PDFont font = PDType0Font.load(document, new File("C:/Users/Developer1/workspace/pdfexport/public/font/NotoSansMyanmarRegular.ttf"));
                 PDFont font = PDType1Font.TIMES_ROMAN;
                 cont.setLeading(14.5f);
+
+
                 float margin = 50;
                 float width = myPage.getMediaBox().getWidth() / 12;
                 float startY = myPage.getMediaBox().getUpperRightY() - margin;
                 int i = 0;
                 for (Row row : rows) {
-
+                    int height=0;
                     float startX = myPage.getMediaBox().getLowerLeftX() + margin;
                     for (Column column : row.columns) {
+
                         String[] values = column.value.split(",", column.value.length());
                         cont.beginText();
-                        cont.newLineAtOffset(startX, startY-i*55);
+                        cont.newLineAtOffset(startX, startY-i*18);
                         for(String s:values) {
-                                createNewText(s,cont,font,column.fontSize);
+                            createNewText(s,cont,font,column.fontSize);
+                            height +=column.value.length();
                         }
                         cont.endText();
                         startX += width * column.columnSpan;
                     }
+
                     i++;
+                    startY -=height/row.columns.size()/2;
                 }
 
             }
