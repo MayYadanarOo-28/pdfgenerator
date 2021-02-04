@@ -1,7 +1,8 @@
 package libObj;
 
+import java.util.List;
+
 public class Column {
-    public String value;
+    public List<Paragraph > paragraphs;
     public Integer columnSpan;
-    public Integer fontSize;
 }
