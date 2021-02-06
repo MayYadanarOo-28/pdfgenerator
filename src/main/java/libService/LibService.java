@@ -21,13 +21,14 @@ public class LibService {
             Column column = new Column();
             column.paragraphs = c.paragraphs;
             column.columnSpan = c.columnSpan;
+            column.align =c.align;
             columnList.add(column);
             row.columns = columnList;
         }
         return row;
     }
 
-    public static Column col(List<Paragraph> paragraphs, Integer colSpan) {
+    public static Column col(List<Paragraph> paragraphs, Integer colSpan,String align) {
         Column column = new Column();
 
         if (colSpan <= 12) {
@@ -37,6 +38,7 @@ public class LibService {
         }
 
         column.paragraphs = paragraphs;
+        column.align=align;
         return column;
     }
 
@@ -67,14 +69,33 @@ public class LibService {
                     int height = 0;
                     float startX = myPage.getMediaBox().getLowerLeftX() + margin;
                     for (Column column : row.columns) {
+                        int align;
+
+                        if (column.align.equals("left")) {
+                            align=0;
+                        } else if (column.align.equals("center")) {
+                            if(column.columnSpan.equals(12)){
+                                align=240;
+                            }
+                            else
+                            align =50;
+                        }
+                        else{
+                            if(column.columnSpan.equals(12)){
+                                align=450;
+                            }
+                            else
+                            align=80;
+                        }
                         cont.beginText();
-                        cont.newLineAtOffset(startX, startY - i * 17);
+                        cont.newLineAtOffset(startX+align, startY - i * 17);
                         for (Paragraph paragraph : column.paragraphs) {
                             createNewText(paragraph.text, cont, font, paragraph.fontSize);
                             height += column.paragraphs.size();
                         }
                         cont.endText();
                         startX += width * column.columnSpan;
+
                     }
                     i++;
                     startY -= height / row.columns.size() * 5;

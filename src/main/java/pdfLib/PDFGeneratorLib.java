@@ -23,11 +23,15 @@ public class PDFGeneratorLib {
 
 
         Row row1 = addCol(
-                col(paragraphs1,6),col(paragraphs2,6));
+                col(paragraphs1,6,"left"),col(paragraphs2,6,"left"));
         Row row2 = addCol(
-                col(paragraphs1,2),col(paragraphs2,6));
+                col(paragraphs1,2,"left"),col(paragraphs2,6,"left"));
+        Row row3 = addCol(
+                col(paragraphs1,12,"center"));
+        Row row4 = addCol(
+                col(paragraphs1,12,"right"));
 
-        List<Row> rows = Arrays.asList(row1,row2);
+        List<Row> rows = Arrays.asList(row1,row2,row3,row4);
         String des = "src/main/resources/test.pdf";
         createPdf(des, rows);
 
