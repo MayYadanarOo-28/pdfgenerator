@@ -75,14 +75,15 @@ public class LibService {
                             align=0;
                         } else if (column.align.equals("center")) {
                             if(column.columnSpan.equals(12)){
-                                align=240;
+
+                                align=238-column.paragraphs.size();
                             }
                             else
                             align =50;
                         }
                         else{
                             if(column.columnSpan.equals(12)){
-                                align=450;
+                                align=440-column.paragraphs.size();
                             }
                             else
                             align=80;
